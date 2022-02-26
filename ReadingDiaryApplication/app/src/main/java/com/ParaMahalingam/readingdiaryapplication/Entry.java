@@ -1,57 +1,69 @@
 package com.ParaMahalingam.readingdiaryapplication;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+public class Entry {
+    private int ID;
+    private String BookTitle;
 
-//import androidx.annotation.Nullable;
-
-public class Entry extends SQLiteOpenHelper {
-    public static final String DB_Name = "Diary.db";
-
-    public static final String TB_Name = "Entry";
-
-    public static final String COL_ID = "ID";
-    public static final String COL_BookTitle = "BookTitle";
-    public static final String COL_Date = "Date";
-    public static final String COL_PagesRead = "PagesRead";
-    public static final String COL_ChildComment = "ChildComment";
-    public static final String COL_TPComment = "TPComment";
-
-
-    public Entry(Context context) {
-        super(context, DB_Name, null, 1);
-        SQLiteDatabase db = this.getWritableDatabase();
+    public Entry(int ID, String bookTitle, String date, String pagesRead, String childComment, String TPComment) {
+        this.ID = ID;
+        BookTitle = bookTitle;
+        Date = date;
+        PagesRead = pagesRead;
+        ChildComment = childComment;
+        this.TPComment = TPComment;
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String query = "CREATE TABLE " + TB_Name + " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_BookTitle + " TEXT," + COL_Date + " TEXT," + COL_PagesRead + " TEXT," + COL_ChildComment + " TEXT," + COL_TPComment + " TEXT)";
-        sqLiteDatabase.execSQL(query);
+
+    private String Date;
+    private String PagesRead;
+    private String ChildComment;
+    private String TPComment;
+
+    public int getID() {
+        return ID;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        String query = "DROP TABLE IF EXISTS " + TB_Name;
-        sqLiteDatabase.execSQL(query);
-        onCreate(sqLiteDatabase);
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public void addNewEntry(String title, String date, String pagesread, String childcomment, String tpcomment)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues data = new ContentValues();
+    public String getBookTitle() {
+        return BookTitle;
+    }
 
-        data.put(COL_BookTitle, title);
-        data.put(COL_Date, date);
-        data.put(COL_PagesRead, pagesread);
-        data.put(COL_ChildComment, childcomment);
-        data.put(COL_TPComment, tpcomment);
+    public void setBookTitle(String bookTitle) {
+        BookTitle = bookTitle;
+    }
 
-        db.insert(TB_Name, null, data);
+    public String getDate() {
+        return Date;
+    }
 
-        db.close();
+    public void setDate(String date) {
+        Date = date;
+    }
 
+    public String getPagesRead() {
+        return PagesRead;
+    }
+
+    public void setPagesRead(String pagesRead) {
+        PagesRead = pagesRead;
+    }
+
+    public String getChildComment() {
+        return ChildComment;
+    }
+
+    public void setChildComment(String childComment) {
+        ChildComment = childComment;
+    }
+
+    public String getTPComment() {
+        return TPComment;
+    }
+
+    public void setTPComment(String TPComment) {
+        this.TPComment = TPComment;
     }
 }

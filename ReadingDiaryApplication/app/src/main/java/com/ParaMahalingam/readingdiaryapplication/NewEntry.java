@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class NewEntry extends AppCompatActivity {
     Button btnCreateEntry;
-    Entry entryDB;
+    DiaryDatabase diaryDatabaseDB;
     EditText booktitle, pagesread, childcomment, tpcomment;
     DatePicker datePicker;
 
@@ -21,7 +21,7 @@ public class NewEntry extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_entry);
 
-        entryDB = new Entry(this);
+        diaryDatabaseDB = new DiaryDatabase(this);
 
         btnCreateEntry = (Button) findViewById(R.id.btnCreate);
         booktitle = (EditText) findViewById(R.id.txtBookTitle);
@@ -33,7 +33,7 @@ public class NewEntry extends AppCompatActivity {
         btnCreateEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                entryDB.addNewEntry(booktitle.getText().toString(), datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), pagesread.getText().toString(), childcomment.getText().toString(), tpcomment.getText().toString());
+                diaryDatabaseDB.addNewEntry(booktitle.getText().toString(), datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), pagesread.getText().toString(), childcomment.getText().toString(), tpcomment.getText().toString());
                 Toast.makeText(NewEntry.this, "Entry has been created!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(NewEntry.this, MainActivity.class));
             }
