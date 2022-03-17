@@ -3,6 +3,10 @@ package com.ParaMahalingam.readingdiaryapplication;
 public class Entry {
     private int ID;
     private String BookTitle;
+    private String Date;
+    private String PagesRead;
+    private String ChildComment;
+    private String TPComment;
 
     public Entry(int ID, String bookTitle, String date, String pagesRead, String childComment, String TPComment) {
         this.ID = ID;
@@ -12,12 +16,6 @@ public class Entry {
         ChildComment = childComment;
         this.TPComment = TPComment;
     }
-
-
-    private String Date;
-    private String PagesRead;
-    private String ChildComment;
-    private String TPComment;
 
     public int getID() {
         return ID;

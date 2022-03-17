@@ -1,12 +1,15 @@
 package com.ParaMahalingam.readingdiaryapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,26 +19,22 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     DiaryDatabase diaryDatabaseDB;
+    CustomAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         diaryDatabaseDB = new DiaryDatabase(this);
 
+        adapter = new CustomAdapter(this, diaryDatabaseDB.getAllEntries());
 
-//        fragmentOrActivity.yourArray.remove(holder.getAdapterPosition());
-//        fragmentOrActivity.yourAdapter.notifyDataSetChanged();
-//
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new CustomAdapter(diaryDatabaseDB.getAllEntries()));
+        recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
-
-
-
 
 
 //        Button btn = (Button)findViewById(R.id.openNewEntryButton);
@@ -50,14 +49,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private List<String> generateData() {
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            data.add(String.valueOf(i) + "th Element");
-        }
-        return data;
+    @Override
+    //Display a search bar on the action bar. Calls the filter() method with a query parameter to filter the results
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.searchbar, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView entriesSearch = (SearchView) menuItem.getActionView();
+        entriesSearch.setQueryHint("Search Entries by title, date, etc");
+
+        entriesSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
     }
-
-
-
 }

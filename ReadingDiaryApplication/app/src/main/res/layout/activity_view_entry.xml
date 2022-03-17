@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewEntry">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblBookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Book Title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="48sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Entry Created on:"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Entry Created on:" />
+
+            <TextView
+                android:id="@+id/lblDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                tools:text="Date" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pages Read:"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Pages Read:" />
+
+            <TextView
+                android:id="@+id/lblPagesRead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pages Read"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                tools:text="Pages Read" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Child Comment:"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Child Comment:" />
+
+            <TextView
+                android:id="@+id/lblChildComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Child Comment"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                tools:text="Child Comment" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teacher / Parent Comment:"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Teacher / Parent Comment:" />
+
+            <TextView
+                android:id="@+id/lblTPComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TPComment"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                tools:text="TPComment" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

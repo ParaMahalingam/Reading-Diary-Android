@@ -56,6 +56,13 @@ public class DiaryDatabase extends SQLiteOpenHelper {
         db.close();
 
     }
+    public void deleteEntry(Integer id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TB_Name, "ID=?", new String[]{Integer.toString(id)});
+        db.close();
+
+    }
 
     public ArrayList<Entry> getAllEntries() {
         SQLiteDatabase db = this.getWritableDatabase();
