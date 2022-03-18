@@ -14,9 +14,6 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     DiaryDatabase diaryDatabaseDB;
     CustomAdapter adapter;
@@ -24,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Entries");
         setContentView(R.layout.activity_main);
+        //Create instance of the Database
         diaryDatabaseDB = new DiaryDatabase(this);
 
         adapter = new CustomAdapter(this, diaryDatabaseDB.getAllEntries());
@@ -36,14 +35,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-
-//        Button btn = (Button)findViewById(R.id.openNewEntryButton);
+//Create a Floating button (New Entry button)
         FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.openNewEntryButton);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //entryDB.addNewEntry("test","01/01/2020","1-5","I like books!","I am glad you liked the book!");
                 startActivity(new Intent(MainActivity.this, NewEntry.class));
             }
         });

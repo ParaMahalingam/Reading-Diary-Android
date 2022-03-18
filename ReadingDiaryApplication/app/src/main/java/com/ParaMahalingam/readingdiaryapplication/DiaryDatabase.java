@@ -41,6 +41,7 @@ public class DiaryDatabase extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    //Add a new Entry to the database
     public void addNewEntry(String title, String date, String pagesread, String childcomment, String tpcomment) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues data = new ContentValues();
@@ -56,14 +57,32 @@ public class DiaryDatabase extends SQLiteOpenHelper {
         db.close();
 
     }
-    public void deleteEntry(Integer id)
-    {
+
+    //Update existing Entry using the ID
+    public void updateEntry(Integer ID, String title, String date, String pagesread, String childcomment, String tpcomment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues data = new ContentValues();
+
+        data.put(COL_BookTitle, title);
+        data.put(COL_Date, date);
+        data.put(COL_PagesRead, pagesread);
+        data.put(COL_ChildComment, childcomment);
+        data.put(COL_TPComment, tpcomment);
+
+        db.update(TB_Name, data, "ID = ?", new String[]{ID.toString()});
+        db.close();
+
+    }
+
+    //Delete an Entry using the ID
+    public void deleteEntry(Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TB_Name, "ID=?", new String[]{Integer.toString(id)});
         db.close();
 
     }
 
+    //Get all Entries from the database
     public ArrayList<Entry> getAllEntries() {
         SQLiteDatabase db = this.getWritableDatabase();
 

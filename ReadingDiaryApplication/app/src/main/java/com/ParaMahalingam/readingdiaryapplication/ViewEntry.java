@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class ViewEntry extends AppCompatActivity {
-TextView lblBookTitle, lblDate, lblPagesRead, lblChildComment, lblTPComment;
+    TextView lblBookTitle, lblDate, lblPagesRead, lblChildComment, lblTPComment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("View Entry");
         setContentView(R.layout.activity_view_entry);
 
         lblBookTitle = (TextView) findViewById(R.id.lblBookTitle);
@@ -25,7 +27,6 @@ TextView lblBookTitle, lblDate, lblPagesRead, lblChildComment, lblTPComment;
             lblPagesRead.setText(extras.getString("PagesRead"));
             lblChildComment.setText(extras.getString("ChildComment"));
             lblTPComment.setText(extras.getString("TPComment"));
-            //The key argument here must match that used in the other activity
         }
     }
 }

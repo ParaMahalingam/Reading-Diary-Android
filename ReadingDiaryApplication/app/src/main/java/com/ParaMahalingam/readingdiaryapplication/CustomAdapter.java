@@ -1,10 +1,7 @@
 package com.ParaMahalingam.readingdiaryapplication;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +50,53 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, @SuppressLint("RecyclerView") final int position) {
 
+        //Open the View Entry screen with selected entry details for displaying.
+        viewHolder.itemView.findViewById((R.id.viewButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //This required an independant research to figure out how to send data to another screen.
+                Intent viewScreen = new Intent(view.getContext(), ViewEntry.class);
+                viewScreen.putExtra("BookTitle", data.get(position).getBookTitle());
+                viewScreen.putExtra("Date", data.get(position).getDate());
+                viewScreen.putExtra("PagesRead", data.get(position).getPagesRead());
+                viewScreen.putExtra("ChildComment", data.get(position).getChildComment());
+                viewScreen.putExtra("TPComment", data.get(position).getTPComment());
+                view.getContext().startActivity(viewScreen);
+            }
+        });
+
+        //Open the Edit Entry screen with selected entry details for modifying.
+        viewHolder.itemView.findViewById((R.id.editButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //This required an independant research to figure out how to send data to another screen.
+                Intent editScreen = new Intent(view.getContext(), EditEntry.class);
+                editScreen.putExtra("ID", data.get(position).getID());
+                editScreen.putExtra("BookTitle", data.get(position).getBookTitle());
+                editScreen.putExtra("Date", data.get(position).getDate());
+                editScreen.putExtra("PagesRead", data.get(position).getPagesRead());
+                editScreen.putExtra("ChildComment", data.get(position).getChildComment());
+                editScreen.putExtra("TPComment", data.get(position).getTPComment());
+                view.getContext().startActivity(editScreen);
+            }
+        });
+
+        //Open the Email Entry screen with selected entry details for sending an Email.
+        viewHolder.itemView.findViewById((R.id.sendButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //This required an independant research to figure out how to send data to another screen.
+                Intent emailScreen = new Intent(view.getContext(), EmailEntry.class);
+                emailScreen.putExtra("ID", data.get(position).getID());
+                emailScreen.putExtra("BookTitle", data.get(position).getBookTitle());
+                emailScreen.putExtra("Date", data.get(position).getDate());
+                emailScreen.putExtra("PagesRead", data.get(position).getPagesRead());
+                emailScreen.putExtra("ChildComment", data.get(position).getChildComment());
+                emailScreen.putExtra("TPComment", data.get(position).getTPComment());
+                view.getContext().startActivity(emailScreen);
+            }
+        });
+
         //Delete selected entry from the database
         viewHolder.itemView.findViewById((R.id.deleteButton)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,30 +107,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             }
         });
 
-        //Open the View Entry screen and fill it with selected Entry details for modification.
-        viewHolder.itemView.findViewById((R.id.editButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String value = data.get(position).getBookTitle();
-                Intent myIntent = new Intent(view.getContext(), EditEntry.class);
-                myIntent.putExtra("key", value);
-                view.getContext().startActivity(myIntent);
-            }
-        });
-
-        //Open the View Entry screen and fill it with selected Entry details.
-        viewHolder.itemView.findViewById((R.id.viewButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent viewScreen = new Intent(view.getContext(), ViewEntry.class);
-                viewScreen.putExtra("BookTitle", data.get(position).getBookTitle());
-                viewScreen.putExtra("Date", data.get(position).getDate());
-                viewScreen.putExtra("PagesRead", data.get(position).getPagesRead());
-                viewScreen.putExtra("ChildComment", data.get(position).getChildComment());
-                viewScreen.putExtra("TPComment", data.get(position).getTPComment());
-                view.getContext().startActivity(viewScreen);
-            }
-        });
 
         viewHolder.entryDate.setText(this.data.get(position).getDate());
         viewHolder.entryTitle.setText(this.data.get(position).getBookTitle());

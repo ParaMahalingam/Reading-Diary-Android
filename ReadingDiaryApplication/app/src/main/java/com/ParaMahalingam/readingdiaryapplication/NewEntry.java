@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,6 +20,7 @@ public class NewEntry extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("New Entry");
         setContentView(R.layout.activity_new_entry);
 
         diaryDatabaseDB = new DiaryDatabase(this);
@@ -33,9 +35,14 @@ public class NewEntry extends AppCompatActivity {
         btnCreateEntry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                diaryDatabaseDB.addNewEntry(booktitle.getText().toString(), datePicker.getDayOfMonth() + "/" + datePicker.getMonth() + "/" + datePicker.getYear(), pagesread.getText().toString(), childcomment.getText().toString(), tpcomment.getText().toString());
-                Toast.makeText(NewEntry.this, "Entry has been created!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(NewEntry.this, MainActivity.class));
+
+                if (TextUtils.isEmpty(booktitle.getText()) | TextUtils.isEmpty(pagesread.getText()) | TextUtils.isEmpty(childcomment.getText()) | TextUtils.isEmpty(tpcomment.getText())) {
+                    Toast.makeText(NewEntry.this, "All fields are required!", Toast.LENGTH_SHORT).show();
+                } else {
+                    diaryDatabaseDB.addNewEntry(booktitle.getText().toString(), datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear(), pagesread.getText().toString(), childcomment.getText().toString(), tpcomment.getText().toString());
+                    Toast.makeText(NewEntry.this, "Entry has been updated!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(NewEntry.this, MainActivity.class));
+                }
             }
         });
     }
