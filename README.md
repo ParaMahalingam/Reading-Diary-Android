@@ -2,6 +2,8 @@
 
 Welcome to the Reading Diary Android Application! This application allows users to keep track of their reading progress by creating, editing, and managing diary entries directly from their Android devices. With a built-in database, users can conveniently store their entries and access them whenever needed. Additionally, users can share their entries via email and easily search for specific entries.
 
+*This project was created by [@ParaMahalingam](https://www.github.com/ParaMahalingam) as part of a university assignment.*
+
 ## Features
 
 - **Create Entry**: Users can create new diary entries, including details such as book title, date, pages read, child comment, and teacher/parent comment.
@@ -33,5 +35,3 @@ New Entry|Edit Entry|Entries|Email Entry
 ![](https://raw.githubusercontent.com/ParaMahalingam/Reading-Diary-Android/main/screenshots/new%20entry.png?raw=true)  |  ![](https://raw.githubusercontent.com/ParaMahalingam/Reading-Diary-Android/main/screenshots/edit.png?raw=true)  |  ![](https://raw.githubusercontent.com/ParaMahalingam/Reading-Diary-Android/main/screenshots/entries.png?raw=true)  |  ![](https://raw.githubusercontent.com/ParaMahalingam/Reading-Diary-Android/main/screenshots/email.png?raw=true)
 
 ---
-
-*This project was created by Para Mahalingam as part of a university assignment.*
